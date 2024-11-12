@@ -1,4 +1,5 @@
 <h1>Cadastrar Usuário</h1>
+<a href="index.php?p=inicial">< Voltar</a>
 <form action="index.php?p=cadastrar" method="POST">
 
     <label for="nome">Nome</label>

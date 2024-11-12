@@ -37,6 +37,10 @@
         font-size: 16px; padding: 5;
     }
 
+    .titulo{
+        font-weight: bold;
+    }
+
     </style>
 
 
