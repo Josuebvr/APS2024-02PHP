@@ -1,13 +1,14 @@
 <?php
     include("conexao.php");
 
+    if(!isset($_SESSION)) 
+            session_start();
+
     // Inicialize a variável $erro como array vazio
     $erro = [];
 
     if(isset($_POST['confirmar'])) {    
     
-        if(!isset($_SESSION)) 
-            session_start();
         
         foreach($_POST as $chave => &$valor) 
             $_SESSION[$chave] = $mysqli->real_escape_string($valor);
@@ -86,31 +87,31 @@ if(count($erro) > 0){
 <form action="index.php?p=cadastrar" method="POST">
 
     <label for="nome">Nome</label>
-    <input name="nome" value="" required type="text">
+    <input name="nome" value="<?php echo $_SESSION['nome']; ?>" required type="text">
     <p class=espaco></p>
 
     <label for="sobrenome">Sobrenome</label>
-    <input name="sobrenome" value="" required type="text">
+    <input name="sobrenome" value="<?php echo $_SESSION['sobrenome']; ?>" required type="text">
     <p class=espaco></p>
 
     <label for="email">E-mail</label>
-    <input name="email" value="" required type="email">
+    <input name="email" value="<?php echo $_SESSION['email']; ?>" required type="email">
     <p class=espaco></p>
 
     <label for="sexo">Sexo</label>
     <select name="sexo">
         <option value="">Selecione</option>
-        <option value="1">Masculino</option>
-        <option value="2">Feminino</option>
+        <option value="1"  <?php if ($_SESSION['sexo'] == 1) echo "selected"; ?> >Masculino</option>
+        <option value="2"  <?php if ($_SESSION['sexo'] == 2) echo "selected"; ?> >Feminino</option>
     </select>
     <p class=espaco></p>
 
     <label for="niveldeacesso">Nível de Acesso</label>
     <select name="niveldeacesso">
         <option value="">Selecione</option>
-        <option value="1">Público</option>
-        <option value="2">Diretor de divisão</option>
-        <option value="3">Ministro do meio ambiente</option>
+        <option value="1"  <?php if ($_SESSION['niveldeacesso'] == 1) echo "selected"; ?> >Público</option>
+        <option value="2"  <?php if ($_SESSION['niveldeacesso'] == 2) echo "selected"; ?> >Diretor de divisão</option>
+        <option value="3"  <?php if ($_SESSION['niveldeacesso'] == 3) echo "selected"; ?> >Ministro do meio ambiente</option>
     </select>
     <p class=espaco></p>
 
