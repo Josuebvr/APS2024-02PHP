@@ -13,10 +13,21 @@
     $niveldeacesso[2] = "Diretor de divisão";
     $niveldeacesso[3] = "Ministro do meio ambiente";
     
-
+    
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    
+    if (!isset($_SESSION['id_usuario'])) {
+        echo "<script> alert('Por favor, faça login para acessar esta página.'); location.href='index.php?p=login'; </script>";
+        exit;
+    }
+    
+    
 ?>
 
 <h1>Usuários</h1>
+<a href="index.php?p=logout">Logout</a>
 <a href="index.php?p=cadastrar">Cadastrar um usuário</a>
 <p class=espaco></p>
 <table border=1 cellpadding=10>

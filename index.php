@@ -47,16 +47,17 @@
     <div class=principal>
         <?php
         
-        if(isset($_GET['p'])){
-
-            $pagina = $_GET['p'].".php";
-            if(is_file("conteudo/$pagina"))
+        if (isset($_GET['p'])) {
+            $pagina = $_GET['p'] . ".php";
+            if (is_file("conteudo/$pagina")) {
                 include("conteudo/$pagina");
-            else  
+            } else {
                 include("conteudo/404.php");
-            
-            }else
-                include("conteudo/inicial.php");
+            }
+        } else {
+            include("conteudo/inicial.php");
+        }
+        
 
         ?>
     </div>

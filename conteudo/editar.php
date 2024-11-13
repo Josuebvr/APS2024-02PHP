@@ -1,6 +1,15 @@
 <?php
     include("conexao.php");
 
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    
+    if (!isset($_SESSION['id_usuario'])) {
+        echo "<script> alert('Por favor, faça login para acessar esta página.'); location.href='index.php?p=login'; </script>";
+        exit;
+    }
+
     if(!isset($_GET['usuario']))
          echo "<script> alert ('Código invalido.'); location.href='index.php?p=inicial'; </script>";
     else{
