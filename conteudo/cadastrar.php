@@ -32,6 +32,7 @@
 
         if(count($erro) == 0){
 
+            // Criptografa a senha
             $senha = md5(md5($_SESSION['senha']));
 
             $sql_code = "INSERT INTO usuario (
@@ -46,7 +47,7 @@
                 '$_SESSION[nome]',
                 '$_SESSION[sobrenome]',
                 '$_SESSION[email]',
-                '$_SESSION[senha]',
+                '$senha',  
                 '$_SESSION[sexo]',
                 '$_SESSION[niveldeacesso]',
                 NOW()
@@ -70,6 +71,7 @@
         }
     }
 ?>
+
 
 <h1>Cadastrar Usuário</h1>
 <?php 
