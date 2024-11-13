@@ -48,7 +48,8 @@
         ?></td>
         <td>
             <a href="index.php?p=editar&usuario=<?php echo $linha['codigo']; ?>">Editar</a> |
-            <a href="index.php?p=deletar&usuario=<?php echo $linha['codigo']; ?>">Deletar</a>
+            <a href="javascript: if(confirm('Tem certeza que deseja deletar o usuário <?php echo $linha['nome']; ?>?'))
+            location.href='index.php?p=deletar&usuario=<?php echo $linha['codigo']; ?>';">Deletar</a>
         </td>
     </tr>
     <?php } while ($linha = $sql_query->fetch_assoc()); ?>
