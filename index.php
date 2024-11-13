@@ -57,6 +57,11 @@
 </head>
 <body>
     <div class=principal>
+
+    <?php if (isset($_SESSION['niveldeacesso']) && $_SESSION['niveldeacesso'] == 3): ?>
+    <a href="index.php?p=cadastrar">Cadastrar um usuário</a>
+<?php endif; ?>
+
         <?php
         
         if (isset($_GET['p'])) {
