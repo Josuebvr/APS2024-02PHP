@@ -39,6 +39,18 @@
         font-weight: bold;
     }
 
+    section{
+        margin-bottom: 20px;
+    }
+
+    img{
+        border-radius: 5px;
+        margin-top: 10px;
+        max-width: 100%; /* Ajusta o tamanho da imagem à largura da seção */
+        height: auto;
+    }
+
+
     </style>
 
 

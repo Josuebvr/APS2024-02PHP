@@ -26,7 +26,8 @@ if (isset($_POST['login'])) {
         $_SESSION['id_usuario'] = $usuario['codigo'];
 
         // Redireciona para a página inicial
-        echo "<script> location.href='index.php?p=inicial'; </script>";
+       // echo "<script> location.href='index.php?p=inicial'; </script>";
+       echo "<script> location.href='index.php?p=meioambiente'; </script>";
     } else {
         $erro[] = "E-mail ou senha incorretos.";
     }
