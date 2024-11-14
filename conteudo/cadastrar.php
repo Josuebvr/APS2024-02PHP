@@ -50,7 +50,7 @@ if(isset($_POST['confirmar'])) {
             if ($imagem["size"] > 2097152) {
                 $erro[] = "Imagem muito grande! Max: 2MB";
             } else {
-                $pasta = "../uploads";
+                $pasta = "../uploads/";
                 $nomedaimagem = uniqid() . '.' . strtolower(pathinfo($imagem['name'], PATHINFO_EXTENSION));
 
                 // Move o arquivo para a pasta de destino
@@ -174,7 +174,7 @@ if(isset($_FILES['imagem'])) {
     if($imagem["size"] > 2097152)
         die("Imagem muito grande! Max: 2MB");
 
-    $pasta = "../uploads";
+    $pasta = "../uploads/";
     $nomedaimagem = $imagem['name'];
     $novonomedaimagem = uniqid();
     $extensao = strtolower (pathinfo($nomedaimagem, PATHINFO_EXTENSION));
