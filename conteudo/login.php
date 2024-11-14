@@ -24,10 +24,10 @@ if (isset($_POST['login'])) {
         $_SESSION['usuario'] = $usuario['nome'];
         $_SESSION['niveldeacesso'] = $usuario['niveldeacesso'];
         $_SESSION['id_usuario'] = $usuario['codigo'];
+        $_SESSION['email'] = $email; // Armazena o email na sessão
 
-        // Redireciona para a página inicial
-       // echo "<script> location.href='index.php?p=inicial'; </script>";
-       echo "<script> location.href='identificacao.php'; </script>";
+        // Redireciona para a página de identificação
+        echo "<script> location.href='identificacao.php'; </script>";
     } else {
         $erro[] = "E-mail ou senha incorretos.";
     }
@@ -51,28 +51,6 @@ if (count($erro) > 0) {
     <label for="senha">Senha</label>
     <input name="senha" required type="password">
     <p class="espaco"></p>
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
 
     <input value="Entrar" name="login" type="submit">
 </form>
