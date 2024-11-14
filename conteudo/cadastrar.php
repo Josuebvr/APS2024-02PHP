@@ -209,7 +209,7 @@ if(isset($_FILES['imagem'])) {
 
     <p><label for ="">Selecione a imagem</label>
     <input name="imagem" type="file"></p>
-    <button name="upload" type="submit">Enviar a imagem</button>
+    
     <p class=espaco></p>
 
 
