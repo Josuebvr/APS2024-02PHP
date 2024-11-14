@@ -1,6 +1,6 @@
 <?php
 
-    include("conexao.php");
+    include('../conexao.php');
 
     $sql_code = "SELECT * FROM usuario";
     $sql_query = $mysqli->query($sql_code) or die ($mysqli->error);
@@ -29,8 +29,8 @@
 ?>
 
 <h1>Usuários</h1>
-<a href="index.php?p=logout">Logout</a>
-<a href="index.php?p=cadastrar">Cadastrar um usuário</a>
+<a href="logout">Logout</a>
+<a href="cadastrar">Cadastrar um usuário</a>
 <p class=espaco></p>
 <table border=1 cellpadding=10>
 

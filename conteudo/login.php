@@ -1,5 +1,5 @@
 <?php
-include("conexao.php");
+include('../conexao.php');
 
 if (!isset($_SESSION)) {
     session_start();
@@ -27,7 +27,7 @@ if (isset($_POST['login'])) {
 
         // Redireciona para a página inicial
        // echo "<script> location.href='index.php?p=inicial'; </script>";
-       echo "<script> location.href='index.php?p=identificacao'; </script>";
+       echo "<script> location.href='index.php?p=conteudo/identificacao'; </script>";
     } else {
         $erro[] = "E-mail ou senha incorretos.";
     }

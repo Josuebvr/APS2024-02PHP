@@ -1,5 +1,5 @@
 <?php
-include("conexao.php");
+include('../conexao.php');
 
 if (!isset($_SESSION)) {
     session_start();
@@ -121,7 +121,7 @@ if(count($erro) > 0){
 }
 ?>
 
-<a href="index.php?p=inicial">< Voltar</a>
+<a href="inicial">< Voltar</a>
 
 <form action="index.php?p=cadastrar" method="POST" enctype="multipart/form-data">
 
@@ -164,7 +164,7 @@ if(count($erro) > 0){
     <p class=espaco></p>
 
 <?php 
-include("conexao.php");
+include('../conexao.php');
 
 if(isset($_FILES['imagem'])) {
     $imagem = $_FILES['imagem'];
@@ -174,7 +174,7 @@ if(isset($_FILES['imagem'])) {
     if($imagem["size"] > 2097152)
         die("Imagem muito grande! Max: 2MB");
 
-    $pasta = "uploads/";
+    $pasta = "../uploads/";
     $nomedaimagem = $imagem['name'];
     $novonomedaimagem = uniqid();
     $extensao = strtolower (pathinfo($nomedaimagem, PATHINFO_EXTENSION));

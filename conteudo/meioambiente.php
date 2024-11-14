@@ -6,8 +6,14 @@
 session_start();
 if (!isset($_SESSION['niveldeacesso'])) {
     echo "Você precisa estar logado para acessar esta página.";
-    exit;
+    exit();
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redirect'])) {
+    header('Location: inicial.php');
+    exit();
+}
+
 
 $niveldeacesso = $_SESSION['niveldeacesso'];
 ?>
@@ -37,11 +43,7 @@ $niveldeacesso = $_SESSION['niveldeacesso'];
 <?php endif; ?>
 
 <?php if ($niveldeacesso == 3): ?>
-    <div style="margin-top: 20px;">
-        <a href="index.php?p=cadastrar">
-            <button style="padding: 10px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                Cadastrar Usuário
-            </button>
-        </a>
-    </div>
+    <form method="POST">
+        <button type="submit" name="redirect">Ir para página inicial</button>
+    </form>
 <?php endif; ?>
