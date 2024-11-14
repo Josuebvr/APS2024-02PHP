@@ -21,4 +21,12 @@ document.querySelector('button').addEventListener('click', () => {
     link.textContent = 'Clique para baixar a imagem';
     document.body.appendChild(link);
 
+    link.click();
+
+    // Redireciona para a página de meio ambiente após o download
+    setTimeout(() => {
+        window.location.href = 'conteudo/meioambiente.php';
+    }, 1000); // Ajuste o tempo de delay conforme necessário
+
 });
+
