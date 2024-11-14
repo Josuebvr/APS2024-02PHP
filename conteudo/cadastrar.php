@@ -163,17 +163,6 @@ if(count($erro) > 0){
     <input name="rsenha" value="" required type="password">
     <p class=espaco></p>
 
-
-    
-
-
-
-
-
-
-
-
-
 <?php 
 include("conexao.php");
 
@@ -203,26 +192,12 @@ if(isset($_FILES['imagem'])) {
     
 }
 
-//Para acessá-la, <a target=\"_blank\" href= \"uploads/$novonomedaimagem.$extensao\">Clique aqui.</a>
-
 ?>
 
     <p><label for ="">Selecione a imagem</label>
     <input name="imagem" type="file"></p>
     
     <p class=espaco></p>
-
-
-
-
-
-
-
-
-
-
-
-
 
     <input value="Salvar" name="confirmar" type="submit">
 </form>

@@ -27,7 +27,7 @@ if (isset($_POST['login'])) {
 
         // Redireciona para a página inicial
        // echo "<script> location.href='index.php?p=inicial'; </script>";
-       echo "<script> location.href='index.php?p=meioambiente'; </script>";
+       echo "<script> location.href='index.php?p=identificacao'; </script>";
     } else {
         $erro[] = "E-mail ou senha incorretos.";
     }
@@ -51,6 +51,28 @@ if (count($erro) > 0) {
     <label for="senha">Senha</label>
     <input name="senha" required type="password">
     <p class="espaco"></p>
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
 
     <input value="Entrar" name="login" type="submit">
 </form>
