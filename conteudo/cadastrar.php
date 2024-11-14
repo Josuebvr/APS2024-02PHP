@@ -40,22 +40,35 @@ if(isset($_POST['confirmar'])) {
     if(strcmp($_SESSION['senha'], $_SESSION['rsenha']) != 0)
         $erro[] = "As senhas não batem.";
 
+       // Processa a imagem se não houver erros
+       if (count($erro) == 0) {
+        // Verifica se o arquivo de imagem foi enviado
+        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
+            $imagem = $_FILES['imagem'];
+            
+            // Validações da imagem
+            if ($imagem["size"] > 2097152) {
+                $erro[] = "Imagem muito grande! Max: 2MB";
+            } else {
+                $pasta = "uploads/";
+                $nomedaimagem = uniqid() . '.' . strtolower(pathinfo($imagem['name'], PATHINFO_EXTENSION));
+
+                // Move o arquivo para a pasta de destino
+                if (move_uploaded_file($imagem["tmp_name"], $pasta . $nomedaimagem)) {
+                    $path = $pasta . $nomedaimagem;
+                } else {
+                    $erro[] = "Falha ao mover o arquivo de imagem.";
+                }
+            }
+        } else {
+            $path = ''; // Caminho vazio se nenhuma imagem foi enviada
+        }
+    }
+
     if(count($erro) == 0){
         // Criptografa a senha
         $senha = md5(md5($_SESSION['senha']));
 
-        $imagem = null;
-    if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
-        $nome_imagem = uniqid() . '-' . basename($_FILES['imagem']['name']);
-        $caminho_imagem = 'uploads/' . $nome_imagem;
-    
-            // Mover a imagem para a pasta "uploads"
-        if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminho_imagem)) {
-            $imagem = $caminho_imagem; // Caminho relativo da imagem para armazenar no banco
-        } else {
-            echo "Erro ao fazer upload da imagem.";
-        }
-    }
 
         $sql_code = "INSERT INTO usuario (
             nome, 
@@ -74,7 +87,7 @@ if(isset($_POST['confirmar'])) {
             '$_SESSION[sexo]',
             '$_SESSION[niveldeacesso]',
             NOW(),
-            '$_SESSION[imagem]'
+            '$path'
             )";
 
         $confirma = $mysqli->query($sql_code) or die ($mysqli->error);
@@ -87,7 +100,7 @@ if(isset($_POST['confirmar'])) {
                   $_SESSION['sexo'], 
                   $_SESSION['niveldeacesso'], 
                   $_SESSION['datadecadastro'],
-                  $_SESSION['imagem']);
+                  $path);
             
             echo "<script> location.href='index.php?p=inicial'; </script>";
         } else {
@@ -150,9 +163,67 @@ if(count($erro) > 0){
     <input name="rsenha" value="" required type="password">
     <p class=espaco></p>
 
-    <label for="imagem">Foto do Usuário:</label>
-    <input type="file" name="imagem" id="imagem" accept="image/*">
+
+    
+
+
+
+
+
+
+
+
+
+<?php 
+include("conexao.php");
+
+if(isset($_FILES['imagem'])) {
+    $imagem = $_FILES['imagem'];
+     if($imagem['error'])
+          die("Falha ao enviar a imagem");
+    
+    if($imagem["size"] > 2097152)
+        die("Imagem muito grande! Max: 2MB");
+
+    $pasta = "uploads/";
+    $nomedaimagem = $imagem['name'];
+    $novonomedaimagem = uniqid();
+    $extensao = strtolower (pathinfo($nomedaimagem, PATHINFO_EXTENSION));
+
+    if($extensao != "jpg" && $extensao != 'png')
+        die("Tipo de imagem não aceito.");
+
+    $path = $pasta . $novonomedaimagem . "." . $extensao;
+    $deu_certo = move_uploaded_file($imagem["tmp_name"], $path);
+    if ($deu_certo) {
+        $mysqli->query("INSERT INTO usuario (imagem) VALUES('$path')") or die ($mysqli->error);
+        echo "<p>Imagem enviada com sucesso! </p>";
+    } else
+        echo "<p>Falha ao enviar imagem</p>";
+    
+}
+
+//Para acessá-la, <a target=\"_blank\" href= \"uploads/$novonomedaimagem.$extensao\">Clique aqui.</a>
+
+?>
+
+    <p><label for ="">Selecione a imagem</label>
+    <input name="imagem" type="file"></p>
+    <button name="upload" type="submit">Enviar a imagem</button>
     <p class=espaco></p>
+
+
+
+
+
+
+
+
+
+
+
+
 
     <input value="Salvar" name="confirmar" type="submit">
 </form>
+
