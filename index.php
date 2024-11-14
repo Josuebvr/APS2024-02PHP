@@ -16,7 +16,7 @@
     <div class=principal>
 
     <?php if (isset($_SESSION['niveldeacesso']) && $_SESSION['niveldeacesso'] == 3): ?>
-    <a href="index.php?p=cadastrar">Cadastrar um usuário</a>
+    <a href="cadastrar.php">Cadastrar um usuário</a>
 <?php endif; ?>
 
         <?php

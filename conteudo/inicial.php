@@ -21,7 +21,7 @@
     }
     
     if (!isset($_SESSION['id_usuario'])) {
-        echo "<script> alert('Por favor, faça login para acessar esta página.'); location.href='index.php?p=login'; </script>";
+        echo "<script> alert('Por favor, faça login para acessar esta página.'); location.href='login'; </script>";
         exit;
     }
     
@@ -80,9 +80,9 @@ do {
             ?>
         </td>
         <td>
-            <a href="index.php?p=editar&usuario=<?php echo $linha['codigo'] ?? ''; ?>">Editar</a> |
+            <a href="editar?usuario=<?php echo $linha['codigo'] ?? ''; ?>">Editar</a> |
             <a href="javascript: if(confirm('Tem certeza que deseja deletar o usuário <?php echo $linha['nome'] ?? 'usuário'; ?>?'))
-            location.href='index.php?p=deletar&usuario=<?php echo $linha['codigo'] ?? ''; ?>';">Deletar</a>
+            location.href='deletar?usuario=<?php echo $linha['codigo'] ?? ''; ?>';">Deletar</a>
         </td>
     </tr>
 <?php 

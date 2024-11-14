@@ -7,7 +7,7 @@ include('../conexao.php');
     }
     
     if (!isset($_SESSION['id_usuario'])) {
-        echo "<script> alert('Por favor, faça login para acessar esta página.'); location.href='index.php?p=login'; </script>";
+        echo "<script> alert('Por favor, faça login para acessar esta página.'); location.href='login'; </script>";
         exit;
     }
 
@@ -19,12 +19,12 @@ include('../conexao.php');
     if($sql_query)
         echo "<script>
                 alert('O usuário foi deletado com sucesso.'); 
-                location.href='index.php?p=inicial';
+                location.href='inicial';
              </script>";
     else
         echo "<script> 
                 alert('Não foi possível deletar o usuário.'); 
-                location.href='index.php?p=inicial';
+                location.href='inicial';
             </script>";
 
 ?>

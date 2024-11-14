@@ -6,7 +6,7 @@ if (!isset($_SESSION)) {
 }
 
 if (!isset($_SESSION['id_usuario'])) {
-    echo "<script> alert('Por favor, faça login para acessar esta página.'); location.href='index.php?p=login'; </script>";
+    echo "<script> alert('Por favor, faça login para acessar esta página.'); location.href='login'; </script>";
     exit;
 }
 
@@ -50,7 +50,7 @@ if(isset($_POST['confirmar'])) {
             if ($imagem["size"] > 2097152) {
                 $erro[] = "Imagem muito grande! Max: 2MB";
             } else {
-                $pasta = "uploads/";
+                $pasta = "../uploads";
                 $nomedaimagem = uniqid() . '.' . strtolower(pathinfo($imagem['name'], PATHINFO_EXTENSION));
 
                 // Move o arquivo para a pasta de destino
@@ -102,7 +102,7 @@ if(isset($_POST['confirmar'])) {
                   $_SESSION['datadecadastro'],
                   $path);
             
-            echo "<script> location.href='index.php?p=inicial'; </script>";
+            echo "<script> location.href='inicial'; </script>";
         } else {
             $erro[] = "Erro ao cadastrar: " . $mysqli->error;
         }
@@ -123,7 +123,7 @@ if(count($erro) > 0){
 
 <a href="inicial">< Voltar</a>
 
-<form action="index.php?p=cadastrar" method="POST" enctype="multipart/form-data">
+<form action="cadastrar" method="POST" enctype="multipart/form-data">
 
     <label for="nome">Nome</label>
     <input name="nome" value="<?php echo isset($_POST['nome']) ? $_POST['nome'] : ''; ?>" required type="text">
@@ -174,7 +174,7 @@ if(isset($_FILES['imagem'])) {
     if($imagem["size"] > 2097152)
         die("Imagem muito grande! Max: 2MB");
 
-    $pasta = "../uploads/";
+    $pasta = "../uploads";
     $nomedaimagem = $imagem['name'];
     $novonomedaimagem = uniqid();
     $extensao = strtolower (pathinfo($nomedaimagem, PATHINFO_EXTENSION));

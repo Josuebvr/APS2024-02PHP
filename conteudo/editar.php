@@ -6,12 +6,12 @@
     }
     
     if (!isset($_SESSION['id_usuario'])) {
-        echo "<script> alert('Por favor, faça login para acessar esta página.'); location.href='index.php?p=login'; </script>";
+        echo "<script> alert('Por favor, faça login para acessar esta página.'); location.href='login'; </script>";
         exit;
     }
 
     if(!isset($_GET['usuario']))
-         echo "<script> alert ('Código invalido.'); location.href='index.php?p=inicial'; </script>";
+         echo "<script> alert ('Código invalido.'); location.href='inicial'; </script>";
     else{
 
     $usu_codigo = intval($_GET['usuario']);
@@ -84,7 +84,7 @@
                       $_SESSION['datadecadastro'],
                       $_SESSION['imagem']);
                 
-                echo "<script> location.href='index.php?p=inicial'; </script>";
+                echo "<script> location.href='inicial'; </script>";
             } else {
                 $erro[] = "Erro ao cadastrar: " . $mysqli->error;
             }
@@ -118,8 +118,8 @@ if(count($erro) > 0){
     echo "</div>";
 }
 ?>
-<a href="index.php?p=inicial">< Voltar</a>
-<form action="index.php?p=editar&usuario=<?php echo $usu_codigo; ?>" method="POST" enctype="multipart/form-data">
+<a href="inicial">< Voltar</a>
+<form action="editar?usuario=<?php echo $usu_codigo; ?>" method="POST" enctype="multipart/form-data">
 
     <label for="nome">Nome</label>
     <input name="nome" value="<?php echo $_SESSION['nome']; ?>" required type="text">

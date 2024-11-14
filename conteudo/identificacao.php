@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redirect'])) {
-    header('Location: conteudo/meioambiente.php');
+    header('Location: meioambiente.php');
     exit();
 }
 ?>
