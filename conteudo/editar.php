@@ -46,6 +46,18 @@
 
         if(count($erro) == 0){
 
+        $imagem = null;
+        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
+            $nome_imagem = uniqid() . '-' . basename($_FILES['imagem']['name']);
+            $caminho_imagem = 'uploads/' . $nome_imagem;
+        
+            if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminho_imagem)) {
+                    $imagem = $caminho_imagem;
+            } else {
+                    echo "Erro ao fazer upload da imagem.";
+            }
+        }
+
             // Criptografa a senha
             $senha = md5(md5($_SESSION['senha']));
 
@@ -55,7 +67,8 @@
                 email = '$_SESSION[email]',
                 senha = '$senha',
                 sexo = '$_SESSION[sexo]',
-                niveldeacesso = '$_SESSION[niveldeacesso]'
+                niveldeacesso = '$_SESSION[niveldeacesso]',
+                imagem = '$_SESSION[imagem]'
                 WHERE codigo = '$usu_codigo'";
                 
 
@@ -68,7 +81,8 @@
                       $_SESSION['senha'], 
                       $_SESSION['sexo'], 
                       $_SESSION['niveldeacesso'], 
-                      $_SESSION['datadecadastro']);
+                      $_SESSION['datadecadastro'],
+                      $_SESSION['imagem']);
                 
                 echo "<script> location.href='index.php?p=inicial'; </script>";
             } else {
@@ -90,6 +104,7 @@
         $_SESSION['senha'] = $linha['senha'];
         $_SESSION['sexo'] = $linha['sexo'];
         $_SESSION['niveldeacesso'] = $linha['niveldeacesso'];
+        $_SESSION['imagem'] = $linha['imagem'];
     }
 ?>
 
@@ -104,7 +119,7 @@ if(count($erro) > 0){
 }
 ?>
 <a href="index.php?p=inicial">< Voltar</a>
-<form action="index.php?p=editar&usuario=<?php echo $usu_codigo; ?>" method="POST">
+<form action="index.php?p=editar&usuario=<?php echo $usu_codigo; ?>" method="POST" enctype="multipart/form-data">
 
     <label for="nome">Nome</label>
     <input name="nome" value="<?php echo $_SESSION['nome']; ?>" required type="text">
@@ -142,6 +157,10 @@ if(count($erro) > 0){
 
     <label for="rsenha">Repita a senha</label>
     <input name="rsenha" value="" required type="password">
+    <p class=espaco></p>
+
+    <label for="imagem">Foto do Usuário:</label>
+    <input type="file" name="imagem" id="imagem" accept="image/*">
     <p class=espaco></p>
 
     <input value="Salvar" name="confirmar" type="submit">

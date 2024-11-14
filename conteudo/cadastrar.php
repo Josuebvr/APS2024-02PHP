@@ -44,6 +44,19 @@ if(isset($_POST['confirmar'])) {
         // Criptografa a senha
         $senha = md5(md5($_SESSION['senha']));
 
+        $imagem = null;
+    if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
+        $nome_imagem = uniqid() . '-' . basename($_FILES['imagem']['name']);
+        $caminho_imagem = 'uploads/' . $nome_imagem;
+    
+            // Mover a imagem para a pasta "uploads"
+        if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminho_imagem)) {
+            $imagem = $caminho_imagem; // Caminho relativo da imagem para armazenar no banco
+        } else {
+            echo "Erro ao fazer upload da imagem.";
+        }
+    }
+
         $sql_code = "INSERT INTO usuario (
             nome, 
             sobrenome, 
@@ -51,7 +64,8 @@ if(isset($_POST['confirmar'])) {
             senha, 
             sexo,
             niveldeacesso,
-            datadecadastro)
+            datadecadastro,
+            imagem)
             VALUES(
             '$_SESSION[nome]',
             '$_SESSION[sobrenome]',
@@ -59,7 +73,8 @@ if(isset($_POST['confirmar'])) {
             '$senha',  
             '$_SESSION[sexo]',
             '$_SESSION[niveldeacesso]',
-            NOW()
+            NOW(),
+            '$_SESSION[imagem]'
             )";
 
         $confirma = $mysqli->query($sql_code) or die ($mysqli->error);
@@ -71,7 +86,8 @@ if(isset($_POST['confirmar'])) {
                   $_SESSION['senha'], 
                   $_SESSION['sexo'], 
                   $_SESSION['niveldeacesso'], 
-                  $_SESSION['datadecadastro']);
+                  $_SESSION['datadecadastro'],
+                  $_SESSION['imagem']);
             
             echo "<script> location.href='index.php?p=inicial'; </script>";
         } else {
@@ -94,7 +110,7 @@ if(count($erro) > 0){
 
 <a href="index.php?p=inicial">< Voltar</a>
 
-<form action="index.php?p=cadastrar" method="POST">
+<form action="index.php?p=cadastrar" method="POST" enctype="multipart/form-data">
 
     <label for="nome">Nome</label>
     <input name="nome" value="<?php echo isset($_POST['nome']) ? $_POST['nome'] : ''; ?>" required type="text">
@@ -132,6 +148,10 @@ if(count($erro) > 0){
 
     <label for="rsenha">Repita a senha</label>
     <input name="rsenha" value="" required type="password">
+    <p class=espaco></p>
+
+    <label for="imagem">Foto do Usuário:</label>
+    <input type="file" name="imagem" id="imagem" accept="image/*">
     <p class=espaco></p>
 
     <input value="Salvar" name="confirmar" type="submit">
