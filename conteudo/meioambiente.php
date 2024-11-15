@@ -1,4 +1,12 @@
 
+
+
+            <!-- tem que arrumar essa pagina inteira --> 
+
+
+
+
+
 <h1>Bem-vindo à página de Informações sobre o Meio Ambiente!</h1>
 <p>Aqui você encontrará diversas informações e notícias sobre preservação ambiental, sustentabilidade, e muito mais.</p>
 

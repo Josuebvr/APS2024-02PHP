@@ -10,19 +10,19 @@ if (!isset($_SESSION['email'])) {
 $email = $_SESSION['email'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $imageData = $_POST['image']; // Captura a imagem enviada
+    $imageData = $_POST['image']; // tira a foto
 
-    // Ajuste o caminho para um diretório existente com permissão de escrita
+    
     $imagePath = 'C:/wamp64/www/APS2024-02PHP/temp/' . uniqid() . '.jpg';
     if (!file_put_contents($imagePath, base64_decode($imageData))) {
         die("Erro ao salvar a imagem. Verifique o caminho e as permissões.");
     }
 
-    // Chamada para a API de comparação de fotos
+    // aqui chama o python (ta com erro)
     $url = 'http://localhost:5000/conteudo/comparador';
     $data = [
         'new_image' => curl_file_create($imagePath),
-        'email' => $email // Usa o email do usuário da sessão
+        'email' => $email 
     ];
 
     $ch = curl_init();
@@ -36,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $result = json_decode($response, true);
 
-    // Verifica se a comparação foi bem-sucedida e se o retorno é válido
+    
     if ($result && isset($result['sucesso']) && $result['sucesso'] && $result['correspondencia'] === true) {
         header("Location: meioambiente.php");
     } else {
-        echo "As fotos não correspondem. Tente novamente.";
+        echo "As fotos não correspondem. Tente novamente."; //tem que arrumar depois
     }
 }
 ?>
@@ -85,11 +85,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             var context = canvas.getContext('2d');
             context.drawImage(video, 0, 0);
 
-            // Converte a imagem para Base64 e remove o prefixo corretamente
+           
             var dataURL = canvas.toDataURL('image/jpeg').replace(/^data:image\/jpeg;base64,/, '');
             imageInput.value = dataURL;
 
-            // Exibe o botão para envio
+           
             redirectButton.style.display = 'inline-block';
         });
     </script>

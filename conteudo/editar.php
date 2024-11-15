@@ -58,7 +58,7 @@
             }
         }
 
-            // Criptografa a senha
+            
             $senha = md5(md5($_SESSION['senha']));
 
             $sql_code = "UPDATE usuario SET

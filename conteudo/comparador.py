@@ -6,7 +6,7 @@ import mysql.connector
 
 app = Flask(__name__)
 
-# Função para comparar imagens
+    # comparador de imagens
 def comparar_imagens(caminho_imagem1, caminho_imagem2):
     img1 = cv2.imread(caminho_imagem1, cv2.IMREAD_GRAYSCALE)
     img2 = cv2.imread(caminho_imagem2, cv2.IMREAD_GRAYSCALE)
@@ -16,9 +16,9 @@ def comparar_imagens(caminho_imagem1, caminho_imagem2):
     limite_similaridade = 1000
     return mse < limite_similaridade
 
-# Função para obter o caminho da imagem com base no email do banco de dados
+    # busca a foto no banco
 def obter_caminho_imagem_usuario(email_usuario):
-    print(f"Buscando imagem para o email: {email_usuario}")  # Log para verificar o email recebido
+    print(f"Buscando imagem para o email: {email_usuario}")  
     try:
         conexao = mysql.connector.connect(
             host="localhost",
@@ -34,7 +34,7 @@ def obter_caminho_imagem_usuario(email_usuario):
         conexao.close()
         
         if resultado:
-            # Verifica se o caminho já é completo ou se precisa de ajuste
+            
             caminho_relativo_imagem = resultado[0]
             if not caminho_relativo_imagem.startswith("C:/wamp64/www/APS2024-02PHP/uploads"):
                 caminho_completo_imagem = os.path.join('C:/wamp64/www/APS2024-02PHP/uploads', caminho_relativo_imagem)
@@ -52,7 +52,7 @@ def obter_caminho_imagem_usuario(email_usuario):
 @app.route('/conteudo/comparador', methods=['POST'])
 def comparar_fotos():
     nova_imagem = request.files['new_image']
-    email_usuario = request.form['email']  # Usando o email ao invés do ID
+    email_usuario = request.form['email'] 
 
     diretorio_temp = 'C:/wamp64/www/APS2024-02PHP/temp/'
     if not os.path.exists(diretorio_temp):
@@ -69,7 +69,7 @@ def comparar_fotos():
     try:
         correspondencia = comparar_imagens(caminho_nova_imagem, caminho_imagem_armazenada)
         print(f"Resultado da comparação: {correspondencia}")
-        # Converte o resultado para bool do Python antes de retornar no JSON
+        
         return jsonify({"sucesso": True, "correspondencia": bool(correspondencia)})
     except Exception as e:
         print(f"Erro durante a comparação: {e}")

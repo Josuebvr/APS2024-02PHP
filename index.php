@@ -1,16 +1,8 @@
 
-
-
 <html>
 <head>
     <meta charset="utf8">
     <title>Controle de Usuários</title>
-
-
-    
-    
-
-
 </head>
 <body>
     <div class=principal>
@@ -23,18 +15,14 @@
         
         if (isset($_GET['p'])) {
             $pagina = $_GET['p'] . ".php";
-            if (is_file("conteudo/$pagina")) {
-                include("conteudo/$pagina");
+            if (is_file("conteudo/$pagina")) {      //?
+                include("conteudo/$pagina");                    //só Deus sabe o porque eu fiz isso
             } else {
                 include("conteudo/404.php");
             }
         } else {
             include("conteudo/inicial.php");
-        }
-        
-
-        ?>
+        }?>
     </div>
-
 </body>
 </html>

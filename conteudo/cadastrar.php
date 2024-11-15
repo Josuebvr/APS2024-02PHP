@@ -13,12 +13,10 @@ if (!isset($_SESSION['id_usuario'])) {
 if(!isset($_SESSION)) 
     session_start();
 
-// Inicialize a variável $erro como array vazio
 $erro = [];
 
 if(isset($_POST['confirmar'])) {    
     
-    // Armazena os dados do formulário na sessão
     foreach($_POST as $chave => &$valor) 
         $_SESSION[$chave] = $mysqli->real_escape_string($valor);
 
@@ -40,20 +38,20 @@ if(isset($_POST['confirmar'])) {
     if(strcmp($_SESSION['senha'], $_SESSION['rsenha']) != 0)
         $erro[] = "As senhas não batem.";
 
-       // Processa a imagem se não houver erros
        if (count($erro) == 0) {
-        // Verifica se o arquivo de imagem foi enviado
+
+     //parte da imagem
         if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
             $imagem = $_FILES['imagem'];
             
-            // Validações da imagem
+            
             if ($imagem["size"] > 2097152) {
                 $erro[] = "Imagem muito grande! Max: 2MB";
             } else {
                 $pasta = "../uploads/";
                 $nomedaimagem = uniqid() . '.' . strtolower(pathinfo($imagem['name'], PATHINFO_EXTENSION));
 
-                // Move o arquivo para a pasta de destino
+             
                 if (move_uploaded_file($imagem["tmp_name"], $pasta . $nomedaimagem)) {
                     $path = $pasta . $nomedaimagem;
                 } else {
@@ -61,15 +59,15 @@ if(isset($_POST['confirmar'])) {
                 }
             }
         } else {
-            $path = ''; // Caminho vazio se nenhuma imagem foi enviada
+            $path = ''; 
         }
     }
 
     if(count($erro) == 0){
-        // Criptografa a senha
+        
         $senha = md5(md5($_SESSION['senha']));
 
-
+        //banco de dados
         $sql_code = "INSERT INTO usuario (
             nome, 
             sobrenome, 
@@ -109,7 +107,7 @@ if(isset($_POST['confirmar'])) {
     }
 }
 ?>
-
+<html>
 <h1>Cadastrar Usuário</h1>
 
 <?php 
@@ -163,6 +161,7 @@ if(count($erro) > 0){
     <input name="rsenha" value="" required type="password">
     <p class=espaco></p>
 
+    <!-- parte da foto 2 --> 
 <?php 
 include('../conexao.php');
 
@@ -202,3 +201,4 @@ if(isset($_FILES['imagem'])) {
     <input value="Salvar" name="confirmar" type="submit">
 </form>
 
+</html>

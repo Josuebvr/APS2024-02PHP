@@ -50,7 +50,7 @@
 do {
 ?>
     <tr>
-        <!-- Coluna de Imagem -->
+       <!-- parte da foto  --> 
         <td>
             <?php if (!empty($linha['imagem']) && file_exists($linha['imagem'])): ?>
                 <a href="<?php echo $linha['imagem']; ?>">
@@ -60,11 +60,8 @@ do {
                 <p>Sem imagem</p>
             <?php endif; ?>
         </td>
-
-        <!-- Coluna de Nome -->
+         
         <td><?php echo $linha['nome'] ?? 'Nome não disponível'; ?></td>
-        
-        <!-- Colunas restantes -->
         <td><?php echo $linha['sobrenome'] ?? 'Sobrenome não disponível'; ?></td>
         <td><?php echo $sexo[$linha['sexo']] ?? 'Não especificado'; ?></td>
         <td><?php echo $linha['email'] ?? 'E-mail não disponível'; ?></td>

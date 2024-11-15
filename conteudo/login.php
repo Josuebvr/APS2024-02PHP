@@ -5,28 +5,28 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-// Inicialize a variável $erro como array vazio
 $erro = [];
 
 if (isset($_POST['login'])) {
     $email = $mysqli->real_escape_string($_POST['email']);
     $senha = md5(md5($_POST['senha']));
 
-    // Verifique se o usuário existe no banco de dados
+   
     $sql_code = "SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha'";
     $sql_query = $mysqli->query($sql_code) or die($mysqli->error);
 
-    // Verifica se a consulta retornou um resultado
+    
     if ($sql_query->num_rows == 1) {
         $usuario = $sql_query->fetch_assoc();
         
-        // Armazena as informações do usuário na sessão
+        // pra nao resetar quando errar
         $_SESSION['usuario'] = $usuario['nome'];
         $_SESSION['niveldeacesso'] = $usuario['niveldeacesso'];
         $_SESSION['id_usuario'] = $usuario['codigo'];
-        $_SESSION['email'] = $email; // Armazena o email na sessão
+        $_SESSION['email'] = $email; 
+        //tem que por a senha aqui tambem pra nao resetar
 
-        // Redireciona para a página de identificação
+        
         echo "<script> location.href='identificacao.php'; </script>";
     } else {
         $erro[] = "E-mail ou senha incorretos.";
