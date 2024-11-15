@@ -4,7 +4,7 @@
             <!-- tem que arrumar essa pagina inteira --> 
 
 
-
+            <head><link rel="stylesheet" href="style.css"></head>
 
 
 <h1>Bem-vindo à página de Informações sobre o Meio Ambiente!</h1>

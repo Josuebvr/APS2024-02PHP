@@ -28,6 +28,7 @@
     
 ?>
 
+<head><link rel="stylesheet" href="style.css"></head>
 <h1>Usuários</h1>
 <a href="logout">Logout</a>
 <a href="cadastrar">Cadastrar um usuário</a>

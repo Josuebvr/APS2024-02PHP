@@ -108,6 +108,7 @@ if(isset($_POST['confirmar'])) {
 }
 ?>
 <html>
+<head><link rel="stylesheet" href="style.css"></head>
 <h1>Cadastrar Usuário</h1>
 
 <?php 

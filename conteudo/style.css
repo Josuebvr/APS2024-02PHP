@@ -1,0 +1,148 @@
+
+body, h1, h2, h3, p, ul, li, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo geral */
+body {
+    background-color: #1e1e2f;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+a {
+    color: #9a6fff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Cabeçalhos */
+h1, h2, h3 {
+    color: #d6bcff;
+    text-shadow: 1px 1px 3px #000000;
+}
+
+/* Botões */
+button, .button {
+    background-color: #6a1bc9;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .button:hover {
+    background-color: #7e33dd;
+}
+
+/* Inputs */
+input[type="text"], input[type="password"], textarea, select {
+    background-color: #2a2a40;
+    color: #ffffff;
+    border: 1px solid #9a6fff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #d6bcff;
+}
+
+/* Formulários */
+form {
+    background-color: #292945;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+/* Listas */
+ul {
+    list-style: none;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Containers gerais */
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #1f1f33;
+    padding: 20px;
+    border-bottom: 3px solid #6a1bc9;
+    text-align: center;
+}
+
+/* Rodapé */
+footer {
+    background-color: #1f1f33;
+    padding: 10px;
+    text-align: center;
+    color: #9a6fff;
+    margin-top: 20px;
+    border-top: 3px solid #6a1bc9;
+}
+
+/* Cards */
+.card {
+    background-color: #292945;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin: 20px 0;
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #6a1bc9;
+    color: #ffffff;
+}
+
+td {
+    background-color: #2a2a40;
+    color: #ffffff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    form, .card {
+        padding: 15px;
+    }
+
+    button, .button {
+        width: 100%;
+    }
+}

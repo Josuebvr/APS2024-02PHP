@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
-
+<head><link rel="stylesheet" href="style.css"></head>
 <h1>Login</h1>
 <?php 
 if (count($erro) > 0) { 
