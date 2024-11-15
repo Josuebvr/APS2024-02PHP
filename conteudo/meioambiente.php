@@ -3,13 +3,6 @@
 
             <!-- tem que arrumar essa pagina inteira --> 
 
-
-            <head><link rel="stylesheet" href="style.css"></head>
-
-
-<h1>Bem-vindo à página de Informações sobre o Meio Ambiente!</h1>
-<p>Aqui você encontrará diversas informações e notícias sobre preservação ambiental, sustentabilidade, e muito mais.</p>
-
 <?php
 session_start();
 if (!isset($_SESSION['niveldeacesso'])) {
@@ -26,32 +19,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redirect'])) {
 $niveldeacesso = $_SESSION['niveldeacesso'];
 ?>
 
-<h1>Informações sobre o Meio Ambiente</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações sobre o Meio Ambiente</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<section>
-    <h2>Reflorestamento</h2>
-    <p>O reflorestamento é uma prática importante para a recuperação de áreas degradadas, restauração da biodiversidade e combate às mudanças climáticas.</p>
-    <img src="../imagens/reflorestamento.jpg" alt="Imagem sobre Reflorestamento">
-</section>
+<div class="container">
+    <h1>Bem-vindo à página de Informações sobre o Meio Ambiente!</h1>
+    <p>Aqui você encontrará diversas informações e notícias sobre preservação ambiental, sustentabilidade, e muito mais.</p>
+    
+<div class="card">
+        <h2>Reflorestamento</h2>
+        <img src="../imagens/reflorestamento.jpg" alt="Reflorestamento">
+        <p>O reflorestamento é uma prática importante para a recuperação de áreas degradadas, restauração da biodiversidade e combate às mudanças climáticas.</p>
+    </div>
 
 <?php if ($niveldeacesso >= 2): ?>
-<section>
-    <h2>Desmatamento</h2>
-    <p>O desmatamento é um dos principais problemas ambientais, levando à perda de biodiversidade, mudanças climáticas e degradação dos solos.</p>
-    <img src="../imagens/desmatamento.jpg" alt="Imagem sobre Desmatamento">
-</section>
+    <div class="card">
+        <h2>Desmatamento</h2>
+        <img src="../imagens/desmatamento.jpg" alt="Desmatamento">
+        <p>O desmatamento é um dos principais problemas ambientais, levando à perda de biodiversidade, mudanças climáticas e degradação dos solos.</p>
+    </div>
 <?php endif; ?>
 
 <?php if ($niveldeacesso >= 3): ?>
-<section>
-    <h2>Queimadas</h2>
-    <p>As queimadas contribuem para a emissão de gases de efeito estufa, perda de biodiversidade e alterações no clima.</p>
-    <img src="../imagens/queimadas.jpg" alt="Imagem sobre Queimadas">
-</section>
+    <div class="card">
+        <h2>Queimadas</h2>
+        <img src="../imagens/queimadas.jpg" alt="Queimadas">
+        <p>As queimadas contribuem para a emissão de gases de efeito estufa, perda de biodiversidade e alterações no clima.</p>
+    </div>
 <?php endif; ?>
 
 <?php if ($niveldeacesso == 3): ?>
     <form method="POST">
         <button type="submit" name="redirect">Ir para página inicial</button>
     </form>
+    </body>
+</html>
 <?php endif; ?>
