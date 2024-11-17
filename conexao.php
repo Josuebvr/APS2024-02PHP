@@ -18,4 +18,4 @@ if ($mysqli->connect_error) {
 
 
 
-                                            <!-- NÃO MUDA NADA AQUI --> 
+                                            <!-- NÃO MUDA NADA AQUI -->  

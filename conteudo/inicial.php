@@ -87,4 +87,4 @@ do {
 } while ($linha = $sql_query->fetch_assoc()); 
 ?>
 
-</table>
+</table> 
